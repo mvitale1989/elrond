@@ -27,5 +27,6 @@ mv ./build/_output/docs/relnote_parsed.md ./build/_output/docs/relnote.md
 
 make binaries
 
-hub release create -d -F ./build/_output/docs/relnote.md -a ./build/_output/bin/elrond-linux-arm64 -a ./build/_output/bin/elrond-linux-amd64 -a ./build/_output/bin/elrond-darwin-amd64 -a ./build/_output/bin/elrond-darwin-arm64 ${GITHUB_REF_NAME}
+# TODO reenable this line after testing
+echo hub release create -d -F ./build/_output/docs/relnote.md -a ./build/_output/bin/elrond-linux-arm64 -a ./build/_output/bin/elrond-linux-amd64 -a ./build/_output/bin/elrond-darwin-amd64 -a ./build/_output/bin/elrond-darwin-arm64 ${GITHUB_REF_NAME}
 rm -rf ./build/_output/

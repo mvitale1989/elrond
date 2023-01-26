@@ -1,0 +1,27 @@
+---
+on:
+  workflow_call:
+    inputs:
+      is_pr:
+        required: true
+        type: boolean
+    secrets:
+      dockerhub_username:
+        required: true
+      dockerhub_token:
+        required: true
+
+env:
+  DOCKER_USERNAME: "${{ secrets.dockerhub_username }}"
+  DOCKER_PASSWORD: "${{ secrets.dockerhub_token }}"
+
+jobs:
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/docker-prepare
+    - run: "make push-image-pr"
+      if: "${{ inputs.is_pr }}"
+    - run: "make push-image"
+      if: "${{ !inputs.is_pr }}"
